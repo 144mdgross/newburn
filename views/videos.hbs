@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- jquery -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+
+  <!-- me -->
+  <script type="text/javascript" src="/javascripts/events.js">
+  </script>
+    <title>VHS Happy</title>
+</head>
+
+<body>
+    <main>
+      <h1 class="center">VHS</h1>
+        <div>
+            <h3 class="center">Add to Collection</h3>
+            <form action="./videos" method="post">
+                <label for="title">Title
+  <input type="text" name="title"><br>
+</label>
+                <br>
+                <br>
+                <label for="director">Director
+  <input type="text" name="director">
+</label>
+                <br>
+                <br>
+                <label for="duration">Duration
+<input type="text" name="duration">
+</label>
+                <br>
+                <br>
+                <input type="submit" value="Submit" class="waves-effect waves-light btn">
+            </form>
+        </div>
+        <div>
+            {{#each vhs}}
+                <h3>{{this.title}}</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg" alt="vhs" class="readMe">
+                <h4>{{this.director}}</h4>
+                <h5>{{this.duration}}</h5>
+                <a id="{{this.id}}" href="/videos/{{this.id}}">Look at Me!</a>
+            {{/each}}
+        </div>
+    </main>
+</body>
+
+</html>
