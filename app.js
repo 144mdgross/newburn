@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const cookieSession = require('cookie-session')
 
 var index = require('./routes/index');
 var videos = require('./routes/videos');
@@ -21,6 +22,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: process.env.JWT_KEY,
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 app.use('/', index);
 app.use('/videos', videos);

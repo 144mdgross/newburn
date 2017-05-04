@@ -7,14 +7,6 @@ const knex= require('../knex')
 const cookieSession = require('cookie-session')
 require('dotenv').config()
 
-router.use(cookieSession({
-  name: 'session',
-  keys: "process.env.JWT_KEY",
-
-  // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}))
-
 /* GET home page. */
 // this will be the login, sign-up and info page
 // set cookies when logged in successfully and signed up successsfully
@@ -26,14 +18,15 @@ function exists (req, res, next) {
 
   if (username && password) {
     knex('users')
-    .where('username', `${username}`)
+    .where('username', username)
     .then(userInfo => {
       if (userInfo.length < 1){
         res.render('error', {message: "you don't exist. please exist first"})
-      } else {
-        let token = jwt.sign({id: userInfo[0].id}, "process.env.JWT_KEY")
+      } else if (userInfo.length >= 1){
+        let token = jwt.sign({id: userInfo[0].id}, process.env.JWT_KEY)
         req.session.token = token
-        res.render('videos')
+        console.log("data?", req.session.isPopulated, req.session.token);
+        next()
       }
     })
   } else if (newUsername && newPassword) {
@@ -54,8 +47,8 @@ function newUserAllowed (req, res, next) {
       password: hash
     }], '*')
     .then(success => {
-      token = jwt.sign({newUser: 'allowed'}, process.env.JWT_KEY)
-      req.session.token = token
+      newUser = jwt.sign({newUser: 'allowed'}, process.env.JWT_KEY)
+      req.session.token = newUser
       console.log(req.session.token);
       next()
       // res.redirect('/videos')
