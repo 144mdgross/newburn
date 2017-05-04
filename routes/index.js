@@ -5,6 +5,7 @@ const saltRounds = 11
 const jwt = require('jsonwebtoken')
 const knex= require('../knex')
 const cookieSession = require('cookie-session')
+require('dotenv').config()
 
 router.use(cookieSession({
   name: 'session',
@@ -53,7 +54,7 @@ function newUserAllowed (req, res, next) {
       password: hash
     }], '*')
     .then(success => {
-      token = jwt.sign({newUser: 'allowed'}, new Buffer(process.env.JWT_KEY, 'base64'))
+      token = jwt.sign({newUser: 'allowed'}, process.env.JWT_KEY)
       req.session.token = token
       console.log(req.session.token);
       next()
