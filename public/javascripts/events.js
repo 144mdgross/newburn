@@ -1,7 +1,9 @@
 $(document).ready(() => {
   $('.carousel').carousel();
+  $(".button-collapse").sideNav();
 
   let counter = 2
+  let update = 2
 
   $('#update').click(e => {
     let title = document.getElementById('title').value
@@ -23,7 +25,7 @@ $(document).ready(() => {
         location.reload(true)
       },
       error: (err) => {
-        console.log(err)
+        Materialize.toast('An error occured. Please try again.', 4000)
       }
     })
   })
@@ -39,11 +41,10 @@ $(document).ready(() => {
         id
       },
       success: gone => {
-        location.reload(true)
-        alert("it's gone and you're happy right?")
+        location.assign('/videos')
       },
       error: err => {
-        console.log(err);
+        Materialize.toast('An error occured. Please try again.', 4000)
       }
     })
   })
@@ -55,23 +56,33 @@ $(document).ready(() => {
       url: `/videos`,
       success: goodbye => {
         location.assign('/')
-        console.log("bye");
       },
       error: stayForever => {
-        console.log(err);
+        Materialize.toast('An error occured. Please try again.', 4000)
       }
     })
   })
 
   $('#hideButton').click(e => {
-    console.log('click?');
     counter += 1
     if(counter % 2 === 0) {
-      console.log('in show?');
       $('#hideForm').show()
       $(e.target).text('hide form')
+      $('#videoTitle').text('Add to Collection')
     } else {
       $('#hideForm').hide()
+      $(e.target).text('show form')
+      $('#videoTitle').text('Browse Collection')
+    }
+  })
+
+  $('#hideUpdate').click(e => {
+    update += 1
+    if(update % 2 === 0) {
+      $('#updateForm').show()
+      $(e.target).text('hide form')
+    } else {
+      $('#updateForm').hide()
       $(e.target).text('show form')
     }
   })

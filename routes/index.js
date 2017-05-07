@@ -5,7 +5,6 @@ const saltRounds = 11
 const jwt = require('jsonwebtoken')
 const knex = require('../knex')
 const cookieSession = require('cookie-session')
-
 // wrap all of these in if statements for deploying to heroku
 require('dotenv').config()
 
@@ -29,14 +28,14 @@ function exists(req, res, next) {
       .then(userInfo => {
         if (userInfo.length < 1) {
           res.render('error', {
-            message: "you don't exist. please exist first"
+            message: "we didn't find you in the database.",
+            hint: "make sure your username and password are correct"
           })
         } else if (userInfo.length >= 1) {
           let token = jwt.sign({
             id: userInfo[0].id
           }, process.env.JWT_KEY)
           req.session.token = token
-          console.log("data?", req.session.isPopulated, req.session.token);
           next()
         }
       })
@@ -62,7 +61,6 @@ function newUserAllowed(req, res, next) {
             newUser: 'allowed'
           }, process.env.JWT_KEY)
           req.session.token = newUser
-          console.log(req.session.token);
           next()
         })
     }
@@ -71,12 +69,6 @@ function newUserAllowed(req, res, next) {
     next()
   }
 }
-
-router.get('/test', function(req, res, next) {
-  req.session.test = 'i set this'
-  console.log('this is session...', req.session);
-  res.end('hi');
-});
 
 router.get('/', function(req, res, next) {
   res.render('index');

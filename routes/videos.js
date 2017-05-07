@@ -9,11 +9,10 @@ require('dotenv').config()
 
 function protect(req, res, next) {
   let token = req.session.token
-  console.log(token, "token in videos route protect funciton");
+
   jwt.verify(token, process.env.JWT_KEY, function(err, decoded) {
-    console.log('verify', token)
     if (err || !decoded) {
-      res.render('error', {message: "you don't exist. please exist first"})
+      res.render('error', {message: "you don't exist. please exist first", hint: ''})
     } else {
       next()
     }
@@ -25,6 +24,7 @@ function protect(req, res, next) {
 router.get('/', protect, function(req, res, next) {
   // list things from db here by most recently created
   knex('videos')
+  .orderBy('created_at', 'desc')
     .then(library => {
       res.render('videos', {
         vhs: library
@@ -40,10 +40,9 @@ router.post('/', protect, (req, res, next) => {
       duration: req.body.duration
     }], '*')
     .then(newVHS => {
-      console.log('success?');
-      res.render('single-video', {
-        newVHS: newVHS
-      })
+      let redirectID = newVHS[0].id
+
+      res.redirect(`/videos/${redirectID}`)
     })
     .catch(err => err)
 })
@@ -54,16 +53,10 @@ router.delete('/', protect, (req, res, next) => {
 })
 
 router.get('/:id', protect, (req, res, next) => {
-  console.log('getting here?');
   let id = req.params.id
-  console.log("ID is here?", id);
   knex('videos')
-    .where('id', `${id}`)
+    .where('id', id)
     .then(single => {
-      console.log(single, "single");
-      // res.status(200)
-      // .send(true)
-      console.log("single", single);
       res.render('single-video', {
         newVHS: single
       })
@@ -82,7 +75,6 @@ router.patch('/:id', protect, (req, res, next) => {
       duration: req.body.duration
     })
     .then(data => {
-      console.log(data, "data");
       res.json(true)
     })
     .catch(err => {

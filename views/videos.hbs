@@ -19,41 +19,64 @@
 </head>
 
 <body>
-    <main>
-        <a class="waves-effect waves-light btn right" id="logout">log out</a>
-        <h1 class="center">VHS</h1>
+    <header>
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <div class="userView">
+                    <div class="background">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </li>
+            <li><a class="" id="logout">log out</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+    </header>
 
-        <div id="hideForm">
-            <h3 class="center">Add to Collection</h3>
-            <form action="./videos" method="post">
-                <label for="title">Title
+    <main>
+        <a class="waves-effect waves-light btn right" id="hideButton">hide form</a>
+
+        <div class="row">
+
+
+            <div class="col s12 m12 l12">
+                <h3 class="center" id="videoTitle">Add to Collection</h3>
+                <form action="./videos" method="post" id="hideForm">
+                    <label for="title">Title
   <input type="text" name="title"><br>
 </label>
-                <br>
-                <br>
-                <label for="director">Director
+                    <br>
+                    <br>
+                    <label for="director">Director
   <input type="text" name="director">
 </label>
-                <br>
-                <br>
-                <label for="duration">Duration
+                    <br>
+                    <br>
+                    <label for="duration">Duration
 <input type="text" name="duration">
 </label>
-                <br>
-                <br>
-                <input type="submit" value="Submit" class="waves-effect waves-light btn">
-            </form>
+                    <br>
+                    <br>
+                    <input type="submit" value="Submit" class="waves-effect waves-light btn">
+                </form>
+            </div>
         </div>
-<a class="waves-effect waves-light btn right" id="hideButton">show form</a>
-        <div>
+
+        <div class="row">
+        <div class="col s12 m12 l12 center">
             {{#each vhs}}
                 <h3>{{this.title}}</h3>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg" alt="vhs" class="readMe">
                 <h4>{{this.director}}</h4>
                 <h5>{{this.duration}}</h5>
-                <a id="{{this.id}}" href="/videos/{{this.id}}">Look at Me!</a>
+                <a id="{{this.id}}" href="/videos/{{this.id}}" class="waves-effect waves-light btn center">Look at Me!</a>
             {{/each}}
         </div>
+      </div>
     </main>
 </body>
 
