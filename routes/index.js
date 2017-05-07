@@ -5,6 +5,8 @@ const saltRounds = 11
 const jwt = require('jsonwebtoken')
 const knex = require('../knex')
 const cookieSession = require('cookie-session')
+
+// wrap all of these in if statements for deploying to heroku
 require('dotenv').config()
 
 router.use(cookieSession({

@@ -4,27 +4,26 @@
 <head>
     <meta charset="utf-8">
     <!-- jquery -->
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-  <!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
 
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
 
-  <!-- me -->
-  <script type="text/javascript" src="/javascripts/events.js">
-  </script>
+    <!-- me -->
+    <script type="text/javascript" src="/javascripts/events.js">
+    </script>
     <title>VHS Happy</title>
 </head>
 
 <body>
     <main>
-      <h1 class="center">VHS</h1>
-        <div>
+        <a class="waves-effect waves-light btn right" id="logout">log out</a>
+        <h1 class="center">VHS</h1>
+
+        <div id="hideForm">
             <h3 class="center">Add to Collection</h3>
             <form action="./videos" method="post">
                 <label for="title">Title
@@ -45,6 +44,7 @@
                 <input type="submit" value="Submit" class="waves-effect waves-light btn">
             </form>
         </div>
+<a class="waves-effect waves-light btn right" id="hideButton">show form</a>
         <div>
             {{#each vhs}}
                 <h3>{{this.title}}</h3>

@@ -48,6 +48,11 @@ router.post('/', protect, (req, res, next) => {
     .catch(err => err)
 })
 
+router.delete('/', protect, (req, res, next) => {
+  req.session = null
+  res.json(true)
+})
+
 router.get('/:id', protect, (req, res, next) => {
   console.log('getting here?');
   let id = req.params.id

@@ -1,6 +1,7 @@
 $(document).ready(() => {
   $('.carousel').carousel();
 
+  let counter = 2
 
   $('#update').click(e => {
     let title = document.getElementById('title').value
@@ -46,4 +47,33 @@ $(document).ready(() => {
       }
     })
   })
+
+  $('#logout').click(e => {
+
+    $.ajax({
+      method: 'DELETE',
+      url: `/videos`,
+      success: goodbye => {
+        location.assign('/')
+        console.log("bye");
+      },
+      error: stayForever => {
+        console.log(err);
+      }
+    })
+  })
+
+  $('#hideButton').click(e => {
+    console.log('click?');
+    counter += 1
+    if(counter % 2 === 0) {
+      console.log('in show?');
+      $('#hideForm').show()
+      $(e.target).text('hide form')
+    } else {
+      $('#hideForm').hide()
+      $(e.target).text('show form')
+    }
+  })
+
 })
