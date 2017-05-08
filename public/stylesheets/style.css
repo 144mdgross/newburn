@@ -1,8 +1,48 @@
+html {
+  /*background-color: rgba(9, 171, 220, 1);*/
+  background-color: rgba(226, 234, 83, 0.71);
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*background-image: url('http://www.andymartin.info/blog/wp-content/uploads/2009/10/VHS-450x450.jpg');*/
+  background-image: url('http://68.media.tumblr.com/tumblr_m6pfw4Xf3P1qknokko1_500.jpg');
+  background-repeat: repeat-y;
+  background-position: right;
+  font-weight: 600;
+  font-family: 'Taviraj', serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.login {
+  font-family: 'Taviraj', serif;
+}
+
+.readMe{
+  box-shadow: 20px 30px 5px rgba(136, 136, 136, .5);
+}
+
+.menu {
+  background-color: rgba(9, 171, 220, 1);
+}
+
+#logout {
+  font-size: 3em;
+  color: whitesmoke;
+}
+
+.icon {
+  font-size: 3em;
+}
+
+label {
+  font-size: 2em;
+}
+
+::-webkit-input-placeholder {
+    color: black;
 }

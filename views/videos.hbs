@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-
-    <!-- me -->
-    <script type="text/javascript" src="/javascripts/events.js">
-    </script>
-    <title>VHS Happy</title>
-</head>
 
 <body>
     <header>
-        <ul id="slide-out" class="side-nav">
+        <ul id="slide-out" class="side-nav menu">
             <li>
                 <div class="userView">
                     <div class="background">
@@ -32,17 +13,13 @@
                     <br>
                 </div>
             </li>
-            <li><a class="" id="logout">log out</a></li>
+            <li><a class="center" id="logout">log out</a></li>
         </ul>
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons icon">menu</i></a>
     </header>
 
     <main>
-        <a class="waves-effect waves-light btn right" id="hideButton">hide form</a>
-
         <div class="row">
-
-
             <div class="col s12 m12 l12">
                 <h3 class="center" id="videoTitle">Add to Collection</h3>
                 <form action="./videos" method="post" id="hideForm">
@@ -62,6 +39,7 @@
                     <br>
                     <br>
                     <input type="submit" value="Submit" class="waves-effect waves-light btn">
+                    <a class="waves-effect waves-light btn" id="hideButton">hide form</a>
                 </form>
             </div>
         </div>
@@ -69,15 +47,13 @@
         <div class="row">
         <div class="col s12 m12 l12 center">
             {{#each vhs}}
-                <h3>{{this.title}}</h3>
+                <h3>Title: {{this.title}}</h3>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg" alt="vhs" class="readMe">
-                <h4>{{this.director}}</h4>
-                <h5>{{this.duration}}</h5>
+                <h4>Director: {{this.director}}</h4>
+                <h5>Duration: {{this.duration}}</h5>
                 <a id="{{this.id}}" href="/videos/{{this.id}}" class="waves-effect waves-light btn center">Look at Me!</a>
             {{/each}}
         </div>
       </div>
     </main>
 </body>
-
-</html>
