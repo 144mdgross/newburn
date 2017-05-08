@@ -1,5 +1,5 @@
-# VHS
-
+# V.H.S.
+  Very Happy Server
 ## Technologies, Frameworks and Languages used:
   - Node.js
   - postgresQL
