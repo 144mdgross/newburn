@@ -73,7 +73,8 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.post('/', ev(validations.post), exists, newUserAllowed, (req, res, next) => {
+// NOTE: because I have diff form names for username and newUsername....I need to change those names and code, or change validations...somehow. 
+router.post('/', exists, newUserAllowed, (req, res, next) => {
   res.redirect('/videos')
 })
 
