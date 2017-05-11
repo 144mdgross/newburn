@@ -1,4 +1,3 @@
-
 <body>
     <header>
         <ul id="slide-out" class="side-nav menu">
@@ -22,6 +21,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <h3 class="center" id="videoTitle">Add to Collection</h3>
+                          <a class="waves-effect waves-light btn right" id="hideButton">hide form</a>
                 <form action="./videos" method="post" id="hideForm">
                     <label for="title">Title
   <input type="text" name="title"><br>
@@ -39,21 +39,21 @@
                     <br>
                     <br>
                     <input type="submit" value="Submit" class="waves-effect waves-light btn">
-                    <a class="waves-effect waves-light btn" id="hideButton">hide form</a>
                 </form>
             </div>
         </div>
 
+
         <div class="row">
-        <div class="col s12 m12 l12 center">
-            {{#each vhs}}
-                <h3>Title: {{this.title}}</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg" alt="vhs" class="readMe">
-                <h4>Director: {{this.director}}</h4>
-                <h5>Duration: {{this.duration}}</h5>
-                <a id="{{this.id}}" href="/videos/{{this.id}}" class="waves-effect waves-light btn center">Look at Me!</a>
-            {{/each}}
+            <div class="col s12 m12 l12 center">
+                {{#each vhs}}
+                    <h3>Title: {{this.title}}</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg" alt="vhs" class="readMe">
+                    <h4>Director: {{this.director}}</h4>
+                    <h5>Duration: {{this.duration}}</h5>
+                    <a id="{{this.id}}" href="/videos/{{this.id}}" class="waves-effect waves-light btn center">Look at Me!</a>
+                {{/each}}
+            </div>
         </div>
-      </div>
     </main>
 </body>

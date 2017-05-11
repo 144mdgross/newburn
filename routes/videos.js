@@ -5,7 +5,9 @@ const bodyParser = require('body-parser')
 const Boom = require('boom')
 const jwt = require('jsonwebtoken')
 const cookieSession = require('cookie-session')
-require('dotenv').config()
+const ev = require('express-validation')
+const validations = require('../validations/vhs')
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 function protect(req, res, next) {
   let token = req.session.token
@@ -19,10 +21,7 @@ function protect(req, res, next) {
   });
 }
 
-
-/* GET users listing. */
 router.get('/', protect, function(req, res, next) {
-  // list things from db here by most recently created
   knex('videos')
   .orderBy('created_at', 'desc')
     .then(library => {
@@ -32,7 +31,7 @@ router.get('/', protect, function(req, res, next) {
     })
 });
 
-router.post('/', protect, (req, res, next) => {
+router.post('/', ev(validations.post), protect, (req, res, next) => {
   knex('videos')
     .insert([{
       title: req.body.title,
@@ -65,7 +64,7 @@ router.get('/:id', protect, (req, res, next) => {
 
 
 
-router.patch('/:id', protect, (req, res, next) => {
+router.patch('/:id', ev(validations.post), protect, (req, res, next) => {
 
   knex('videos')
     .where('id', `${req.body.id}`)

@@ -5,15 +5,15 @@ const saltRounds = 11
 const jwt = require('jsonwebtoken')
 const knex = require('../knex')
 const cookieSession = require('cookie-session')
+const ev = require('express-validation')
+const validations = require('../validations/users')
 // wrap all of these in if statements for deploying to heroku
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 router.use(cookieSession({
   name: 'session',
   keys: [process.env.JWT_KEY],
-
-  // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  maxAge: 24 * 60 * 60 * 1000
 }))
 
 function exists(req, res, next) {
@@ -64,7 +64,6 @@ function newUserAllowed(req, res, next) {
           next()
         })
     }
-
   } else {
     next()
   }
@@ -74,7 +73,7 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.post('/', exists, newUserAllowed, (req, res, next) => {
+router.post('/', ev(validations.post), exists, newUserAllowed, (req, res, next) => {
   res.redirect('/videos')
 })
 

@@ -8,10 +8,12 @@ exports.up = function(knex) {
     table.string('director')
     .notNullable()
     .defaultTo("")
-    table.timestamps(true, true)
     table.string('duration')
     .notNullable()
     .defaultTo('Pedro Almodovar')
+    table.text('image')
+      .defaultTo('https://upload.wikimedia.org/wikipedia/commons/6/67/VHS-cassette.jpg')
+    table.timestamps(true, true)
   })
 };
 

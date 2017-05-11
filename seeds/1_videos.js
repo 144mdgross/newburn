@@ -5,21 +5,21 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('videos').insert([{
           id: 1,
-          title: 'rowValue1',
-          director: 'You',
-          duration: '90 minutes'
+          title: 'talk to her',
+          director: 'Pedro Almodóvar',
+          duration: '1h 52min'
         },
         {
           id: 2,
-          title: 'rowValue2',
-          director: 'Me',
-          duration: '255 years'
+          title: 'Dog Star Man',
+          director: 'Stan Brakhage',
+          duration: '1h 18min'
         },
         {
           id: 3,
-          title: 'Talk to her',
-          director: 'pedro almodovar',
-          duration: '85 mintues'
+          title: 'Fantasia',
+          director: 'James Algar, etc',
+          duration: '2h 5min'
         }
       ]);
     });
