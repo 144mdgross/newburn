@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken')
 const knex = require('../knex')
 const cookieSession = require('cookie-session')
 const ev = require('express-validation')
-const validations = require('../validations/users')
+const returning = require('../validations/returning-users')
+const newPerson = require('../validations/new-users')
 // wrap all of these in if statements for deploying to heroku
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
@@ -73,9 +74,14 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-// NOTE: because I have diff form names for username and newUsername....I need to change those names and code, or change validations...somehow. 
-router.post('/', exists, newUserAllowed, (req, res, next) => {
+// NOTE: because I have diff form names for username and newUsername....I need to change those names and code, or change validations...somehow.
+router.post('/new', ev(newPerson.post), exists, newUserAllowed, (req, res, next) => {
   res.redirect('/videos')
 })
+
+router.post('/', ev(returning.post), exists, newUserAllowed, (req, res, next) => {
+  res.redirect('/videos')
+})
+
 
 module.exports = router;
