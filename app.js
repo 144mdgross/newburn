@@ -28,14 +28,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/videos', videos);
 
-// app.use((err, _req, res, _next) => {
-//   if (err.status) {
-//     return res.status(err.status).send(err);
-//   }
-//
-//   console.error(err);
-//   res.sendStatus(500);
-// });
+app.use((err, _req, res, _next) => {
+  if (err.status) {
+    return res.status(err.status).send(err);
+  }
+
+  console.error(err);
+  res.sendStatus(500);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
