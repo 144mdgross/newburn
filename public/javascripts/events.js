@@ -1,9 +1,10 @@
 $(document).ready(() => {
   $('.carousel').carousel();
   $(".button-collapse").sideNav();
+  $('#updateForm').hide()
 
   let counter = 2
-  let update = 2
+  let update = 1
 
   $('#update').click(e => {
     let title = document.getElementById('title').value
@@ -83,7 +84,7 @@ $(document).ready(() => {
       $(e.target).text('hide form')
     } else {
       $('#updateForm').hide()
-      $(e.target).text('show form')
+      $(e.target).text('edit')
     }
   })
 

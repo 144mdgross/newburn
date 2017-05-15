@@ -28,16 +28,16 @@
 
         </div>
         <div class="row">
-          <a class="waves-effect waves-light btn left" id="hideUpdate">hide form</a>
+          <a class="waves-effect waves-light btn left" id="hideUpdate">edit</a>
             <div class="col s12 m12 l12" id="updateForm">
               <br>
-                <form class="">
+                <form>
                     <label for="director"> Director
-                 <input id="director" placeholder="{{this.director}}" class="controls" type="text" name="director" required></label>
+                 <input id="director" value="{{this.director}}" class="controls" type="text" name="director" required></label>
                     <label for="title">Title
-                 <input id="title" placeholder="{{this.title}}" class="controls" type="text" name="title" required></label>
+                 <input id="title" value="{{this.title}}" class="controls" type="text" name="title" required></label>
                     <label for="duration">Duration
-                 <input id="duration" placeholder="{{this.duration}}" class="controls" type="text" name="duration" required></label>
+                 <input id="duration" value="{{this.duration}}" class="controls" type="text" name="duration" required></label>
                 </form>
                 <!-- <label class="active" for="update">Update</label> -->
                 <button type="button" id="update" data-id="{{this.id}}" class="waves-effect waves-light btn">Update Me!</button>

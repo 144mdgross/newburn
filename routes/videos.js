@@ -77,7 +77,7 @@ router.patch('/:id', ev(validations.post), protect, (req, res, next) => {
       res.json(true)
     })
     .catch(err => {
-      console.log(err);
+      console.error(err);
     })
 
 })
