@@ -79,21 +79,19 @@ router.patch('/:id', ev(validations.post), protect, (req, res, next) => {
     .catch(err => {
       console.error(err);
     })
-
 })
 
 router.delete('/:id', protect, (req, res, next) => {
-  let id = +req.body.id
+  let delId = +req.params.id
 
   knex('videos')
-    .where('id', `${id}`)
+    .where('id', delId)
+    .first()
     .del()
+    .returning('*')
     .then(success => {
       res.json(true)
     })
-
+    .catch(err => console.error(err))
 })
-
-
-
 module.exports = router;

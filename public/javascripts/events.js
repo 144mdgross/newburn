@@ -33,6 +33,7 @@ $(document).ready(() => {
 
   $('#delete').click(e => {
     let id = +$(e.target).attr('data-id')
+    console.log(id);
 
     $.ajax({
       method: 'DELETE',
