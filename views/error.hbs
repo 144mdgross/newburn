@@ -1,4 +1,9 @@
-<h1>{{message}}</h1>
-<p>{{hint}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<h1 class="center">{{message}}</h1>
+<p class="center error">{{hint}}</h1>
+<h2 class="error center">{{error.status}}</h2>
+<a class="e-link" href="/"> back to login </a>
+<script type="text/javascript">
+  for (var i = 0; i < 30; i++) {
+    $('a').append('<br>')
+  }
+</script>

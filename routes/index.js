@@ -29,7 +29,7 @@ function exists(req, res, next) {
       .then(userInfo => {
         if (userInfo.length < 1) {
           res.render('error', {
-            message: "we didn't find you in the database.",
+            message: "we couldn't find you.",
             hint: "make sure your username and password are correct"
           })
         } else if (userInfo.length >= 1) {

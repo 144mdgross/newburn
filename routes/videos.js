@@ -14,7 +14,7 @@ function protect(req, res, next) {
 
   jwt.verify(token, process.env.JWT_KEY, function(err, decoded) {
     if (err || !decoded) {
-      res.render('error', {message: "you don't exist. please exist first", hint: ''})
+      res.render('error', {message: "you don't exist.", hint: ' please exist first'})
     } else {
       next()
     }

@@ -46,3 +46,11 @@ label {
 ::-webkit-input-placeholder {
     color: black;
 }
+
+.e-link{
+  font-size: 3em;
+}
+
+.error {
+  font-size: 1.5em;
+}
