@@ -5,7 +5,7 @@
 
   module.exports.post = {
     body: {
-      username: Joi.string().required().min(8).max(50),
+      username: Joi.string().required().min(6).max(50),
       password: Joi.string().required().min(12).max(100)
     }
   }
