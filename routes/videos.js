@@ -62,8 +62,6 @@ router.get('/:id', protect, (req, res, next) => {
     })
 })
 
-
-
 router.patch('/:id', ev(validations.post), protect, (req, res, next) => {
 
   knex('videos')
@@ -94,4 +92,5 @@ router.delete('/:id', protect, (req, res, next) => {
     })
     .catch(err => console.error(err))
 })
+
 module.exports = router;

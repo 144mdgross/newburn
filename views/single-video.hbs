@@ -17,7 +17,6 @@
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons icon">menu</i></a>
     </header>
 
-
     <main>
         <div class="center">
             {{#each newVHS}}
@@ -31,6 +30,7 @@
           <a class="waves-effect waves-light btn left" id="hideUpdate">edit</a>
             <div class="col s12 m12 l12" id="updateForm">
               <br>
+
                 <form>
                     <label for="director"> Director
                  <input id="director" value="{{this.director}}" class="controls" type="text" name="director" required></label>
@@ -39,15 +39,13 @@
                     <label for="duration">Duration
                  <input id="duration" value="{{this.duration}}" class="controls" type="text" name="duration" required></label>
                 </form>
-                <!-- <label class="active" for="update">Update</label> -->
+
                 <button type="button" id="update" data-id="{{this.id}}" class="waves-effect waves-light btn">Update Me!</button>
 
                 </div>
                 <a href="/videos" class="waves-effect waves-light btn">back to gallery</a>
                 <a type="button" id="delete" data-id="{{this.id}}" class="waves-effect waves-light btn">Delete Me!</a>
                 {{/each}}
-
         </div>
-
     </main>
 </body>

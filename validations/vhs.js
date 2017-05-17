@@ -9,6 +9,6 @@ module.exports.post = {
     director: Joi.string().trim(),
     duration: Joi.string().required().trim(3),
     coverUrl: Joi.string().trim()
+    }
   }
-}
 })()
