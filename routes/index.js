@@ -23,21 +23,33 @@ function exists(req, res, next) {
   let newUsername = req.body.newUsername
   let newPassword = req.body.newPassword
 
+
   if (username && password) {
     knex('users')
       .where('username', username)
       .then(userInfo => {
+        console.log('user', userInfo);
         if (userInfo.length < 1) {
           res.render('error', {
             message: "we couldn't find you.",
             hint: "make sure your username and password are correct"
           })
         } else if (userInfo.length >= 1) {
-          let token = jwt.sign({
-            id: userInfo[0].id
-          }, process.env.JWT_KEY)
-          req.session.token = token
-          next()
+          console.log(userInfo.password);
+          const passes = bcrypt.compareSync(password, userInfo[0].password)
+          if(passes) {
+            let token = jwt.sign({
+              id: userInfo[0].id
+            }, process.env.JWT_KEY)
+            req.session.token = token
+            next()
+          }
+          else {
+            res.render('error', {
+              message: "we couldn't find you.",
+              hint: "make sure your username and password are correct"
+            })
+          }
         }
       })
   } else if (newUsername && newPassword) {
